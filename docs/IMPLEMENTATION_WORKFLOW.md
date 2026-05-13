@@ -16,16 +16,15 @@ The workflow is divided into four parts:
 This stage prepares the Alibaba Cluster Trace 2021 data into the multivariate time-series dataset used for model training.
 
 ### 1.1 Raw data preparation
+In the script folder, a subfolder contains all the process from data download to preprocesssing.
 
 **Scripts**
 - `raw_data_dl.py`
 - `raw_data_inspect.py`
 
-**Purpose**
+**Main Purpose**
 - download or organize the raw Alibaba trace files
 - inspect the structure of the raw resource and request-rate files
-
-**Main outputs**
 - checked raw files for preprocessing
 - verified column structure and time spans
 
@@ -42,7 +41,7 @@ This stage prepares the Alibaba Cluster Trace 2021 data into the multivariate ti
 **Purpose**
 - process raw `MSResource_Table` files
 - convert timestamps into fixed time windows
-- compute service-level CPU and memory features
+- compute service-level CPU and memory features 
 
 **Main outputs**
 - CPU and memory mean
@@ -147,7 +146,7 @@ This stage trains the forecasting model and evaluates prediction performance.
 - `scripts/prediction_hf.py`
 
 **Purpose**
-- load the final multivariate time-series dataset
+- load the final multivariate time-series dataset (final_service_timebased.csv)
 - apply MinMax normalization
 - train the Hugging Face TimeSeriesTransformer model
 - save the trained model and scaler
@@ -211,7 +210,8 @@ This stage prepares provider pricing and runs the decision engine.
 ### 3.3 Decision engine
 
 **Script**
-- `scripts/decision_engine.py`
+- `scripts/decision_engine_main.py`
+- `scripts/decision_engine_mock.py`
 
 **Config**
 - `config/decision.yaml`
@@ -231,7 +231,7 @@ This stage prepares provider pricing and runs the decision engine.
 **Main outputs**
 - decision logs
 - selected provider state changes
-- forecast-driven VM switching results
+- forecast-driven VM switching results in real multi-cloud / testbed
 
 ---
 
@@ -316,13 +316,26 @@ This stage validates MWPA in cloud environments.
 - AWS/OpenStack switching records
 - cost analysis input data
 
+## 5. Cost improve analysis 
+
+**Script**
+- `cost_improve_analysis_real_multicloud.py`
+
+**Purpose**
+- Valiadte cost optimization improvement using MWPA
+
+**Main outputs**
+- comparisons of MWPA vs always AWS using
+- comparisons of MWPA vs always Openstack using
+- Quantitative analysis of the output results
+
 ---
 
 ## 5. Suggested Usage Paths
 
 Depending on the goal, the repository can be used in different ways.
 
-### 5.1 Full workflow reproduction
+### 6.1 Full workflow reproduction
 Use this path if the goal is to reproduce the entire MWPA implementation:
 1. dataset setup and preprocessing
 2. model training and evaluation
@@ -330,7 +343,7 @@ Use this path if the goal is to reproduce the entire MWPA implementation:
 4. decision-engine execution
 5. cloud experiment validation
 
-### 5.2 Decision-engine-only reuse
+### 6.2 Decision-engine-only reuse
 Use this path if trained model artifacts, scaler, and cloud environments are already prepared:
 1. verify model and scaler paths
 2. update `decision.yaml`
@@ -338,7 +351,7 @@ Use this path if trained model artifacts, scaler, and cloud environments are alr
 4. run decision engine in static or live mode
 5. review decision logs and outputs
 
-### 5.3 Cloud-experiment-only reuse
+### 6.3 Cloud-experiment-only reuse
 Use this path if the goal is only to validate inference and switching behavior in OpenStack or real multi-cloud:
 1. prepare cloud VMs and authentication
 2. transfer model and scaler
@@ -348,7 +361,7 @@ Use this path if the goal is only to validate inference and switching behavior i
 
 ---
 
-## 6. Notes
+## 7. Notes
 
 - Some script names and paths are environment-specific and may need adjustment.
 - Raw datasets, credentials, SSH keys, and cloud account-specific identifiers are not included in the repository.
