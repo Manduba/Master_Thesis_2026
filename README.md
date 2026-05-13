@@ -125,7 +125,7 @@ The repository supports three main stages of validation:
 - **OpenStack stage:** transferred-model validation, live telemetry collection, and decision-engine execution in an emulated multi-cloud testbed
 - **Real multi-cloud stage:** decision-engine validation using OpenStack and AWS
 
-For detailed script-level workflow, see [docs/IMPLEMENTATION_WORKFLOW.md] in the docs folder.
+## For detailed script-level workflow, see [docs/IMPLEMENTATION_WORKFLOW.md] in the docs folder.
 
 ## Notes
 
