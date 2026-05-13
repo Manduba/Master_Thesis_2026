@@ -70,20 +70,6 @@ Before running the experiments, the user should prepare:
 - valid API credentials, SSH keys, and local CLI configuration
 - equivalent VM names, instance identifiers, paths, and pricing settings updated in the configuration files
 
-### Recommended Execution Order
-
-To reproduce the workflow, the recommended order is:
-
-1. Run the preprocessing scripts in `scripts/Datasetup/` to prepare service-based and time-based datasets from the Alibaba traces.
-2. Generate the final multivariate time-series dataset used for training.
-3. Run the forecasting model training and evaluation scripts.
-4. Save and transfer the trained model artifacts and scaler if cloud-side inference is required.
-5. Prepare provider pricing input using the configured pricing mode.
-6. Run the decision engine in static mode for controlled validation.
-7. Run the decision engine in live mode for remote inference and VM-state switching experiments.
-8. Review the generated forecast files, decision logs, and cost analysis outputs.
-
-
 ## Reusing the Cloud Experiments
 
 To reuse the OpenStack and real multi-cloud experiments, users must prepare equivalent cloud environments and update the configuration files according to their own setup.
@@ -96,6 +82,34 @@ This includes:
 - pricing mode and provider pricing values
 
 The implementation assumes that application environments are already prepared on the candidate provider VMs. The framework performs provider selection through VM-state actuation rather than full application deployment.
+
+## Recommended Execution Paths
+
+Depending on the purpose, the repository can be used in two different ways.
+
+### A. Full workflow reproduction
+
+Use this path if the goal is to reproduce the complete MWPA pipeline from dataset preprocessing to cloud-side validation.
+
+1. Run the preprocessing scripts in `scripts/Datasetup/` to prepare service-based and time-based datasets from the Alibaba traces.
+2. Generate the final multivariate time-series dataset used for training.
+3. Run the forecasting model training and evaluation scripts.
+4. Save the trained model artifacts and scaler.
+5. Prepare provider pricing input using the configured pricing mode.
+6. Run the decision engine in static mode for controlled validation.
+7. Run the decision engine in live mode for remote inference and VM-state switching experiments.
+8. Review the generated forecast files, decision logs, and cost analysis outputs.
+
+### B. Reusing only the decision engine experiments for actuation validation for provider selection
+
+Use this path if the trained model, scaler, inference VM, and cloud environments are already prepared.
+
+1. Verify that the trained model artifacts and scaler are already available in the expected location.
+2. Update the configuration files with the correct VM names, instance identifiers, SSH paths, and pricing settings.
+3. Prepare provider pricing input using the configured pricing mode.
+4. Run the decision engine in static mode if controlled forecast input is being tested.
+5. Run the decision engine in live mode if remote inference and VM-state switching are being tested.
+6. Review the generated decision logs and cost-analysis outputs.
 
 ## Experiment Context
 
