@@ -115,7 +115,7 @@ Use this path if the trained model, scaler, inference VM, and cloud environments
 
 The repository supports three main stages of validation:
 
-- **Offline stage:** preprocessing, time-series construction, model training, and forecasting evaluation
+- **Model development stage:** preprocessing, time-series construction, model training, and forecasting evaluation
 - **OpenStack stage:** transferred-model validation, live telemetry collection, and decision-engine execution in an emulated multi-cloud testbed
 - **Real multi-cloud stage:** decision-engine validation using OpenStack and AWS
 
