@@ -1,0 +1,36 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Mac files
+.DS_Store
+
+# Editor files
+.vscode/
+.idea/
+
+# Secrets / credentials
+clouds.yaml
+*.pem
+*.key
+*.crt
+.env
+.env.*
+credentials*
+token*
+aws_credentials*
+openrc*
+openstack.rc
+
+# Raw compressed data
+*.zip
+
+# Logs
+*.log

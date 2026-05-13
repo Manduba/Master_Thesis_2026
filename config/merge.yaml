@@ -1,0 +1,24 @@
+merge:
+  resource_csv: "output/batch3_out_resource_service_60s.csv"
+  msrtqps_csv:  "output/batch3_out_msrtqps_service_60s.csv"
+
+  # join keys must match in both files
+  join_keys: ["ts", "msname"]
+
+  # single final output only (no merged_full)
+  out_final: "output/batch3_merged_servicebased_final_60s.csv"
+
+  # expected output columns (order)
+  keep_cols:
+    - "ts"
+    - "msname"
+    - "cpu_mean"
+    - "memory_mean"
+    - "cpu_std"
+    - "memory_std"
+    - "total_request_rate"
+    - "total_request_rate_mean"
+    - "total_request_rate_std"
+    #- "active instances"
+
+

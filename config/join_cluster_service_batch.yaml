@@ -1,0 +1,40 @@
+# cluster-level merge
+join:
+  inputs:
+    - "output/batch1_cluster_timebased_aggregated.csv"
+    - "output/batch2_cluster_timebased_aggregated.csv"
+    - "output/batch3_cluster_timebased_aggregated.csv"
+  output: "output/final_service_timebased.csv"
+  sort_by: "ts"
+  deduplicate_on: ["ts"]
+  keep: "last"
+  keep_cols:
+    - "ts"
+    - "cpu_mean"
+    - "memory_mean"
+    - "cpu_std"
+    - "memory_std"
+    - "request_rate_mean"
+    - "request_rate_std"
+    #- "latency_mean"
+
+# service-level merge
+join_service:
+  inputs:
+    - "output/batch1_merged_servicebased_final_60s.csv"
+    - "output/batch2_merged_servicebased_final_60s.csv"
+    - "output/batch3_merged_servicebased_final_60s.csv"
+  output: "output/final_servicebased.csv"
+  sort_by: "ts"
+  deduplicate_on: ["ts", "msname"]
+  keep: "last"
+  keep_cols:
+    - "ts"
+    - "msname"
+    - "cpu_mean"
+    - "memory_mean"
+    - "cpu_std"
+    - "memory_std"
+    - "request_rate_mean"
+    - "request_rate_std"
+    #- "latency_mean"

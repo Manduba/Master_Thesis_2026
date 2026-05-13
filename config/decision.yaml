@@ -1,0 +1,51 @@
+# ================================================================
+# FCDM Decision Engine — configuration
+# This is the only file you edit between runs.
+# All paths are relative to the project root.
+# ================================================================
+
+# ---- run mode ----
+mode: live          # static | live
+dry_run: false        # true = print actions, do not touch VMs
+check_every_seconds: 300  # how often to check forecast and make decisions every 5 minutes (300 seconds)
+
+# ---- openstack CLI ----
+os_cloud: openstack   # entry name in clouds.yaml
+
+# ---- provider VM names ----
+clouda_main: CloudA-openstack   # OpenStack provider
+#cloudb_main: CloudB-aws         # AWS-mock provider
+cloudb_main: CloudB-aws-real        # AWS EC2 provider (real) | comment out to disable CloudB when testing is emulated testbed
+
+# ---- AWS EC2 real instance (CloudB) ----
+cloudb_instance_id: i-0c1607799ff6574a0     # comment out to disable CloudB when testing is emulated testbed
+cloudb_region:      eu-north-1              # comment out to disable CloudB when testing is emulated testbed
+
+# ---- pricing identifiers (passed to cost_module) ----
+aws_provider:
+  provider:      aws
+  region:        eu-north-1
+  instance_type: t3.small
+
+openstack_provider:
+  provider:      openstack
+  region:        oslo
+  instance_type: aem.2c2r.50g
+
+# ---- paths (relative to project root) ----
+paths:
+  # static mode
+  static_forecast: ../output/openstack_csv/predictions_http_next10min.csv
+  static_log:      ../output/decision_log_staticMode_real_aws.csv     #chenge name when testing emulated testbed
+
+  # live mode
+  live_forecast:   ../output/live_test/predictions_http_livecopy.csv
+  live_log:        ../output/decision_log_liveMode_real_aws.csv     #change name when testing emulated testbed
+
+# ---- remote VM (live mode only) ----
+remote:
+  host:           10.196.243.15
+  user:           ubuntu
+  project_dir:    ~/fcdm_inference
+  infer_script:   infer_openstack_http_live.py
+  forecast_out:   ~/fcdm_inference/output/openstack_live/predictions_http_live.csv

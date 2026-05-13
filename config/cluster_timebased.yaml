@@ -1,0 +1,21 @@
+ # config/cluster_timebased.yaml
+ # in the document report: cluster time based is written as service time-based per batch. 
+input:
+  file: "output/batch3_merged_servicebased_final_60s.csv"
+  
+output:
+  folder: output     #new output folder
+  filename: "batch3_cluster_timebased_aggregated.csv"
+  
+aggregation:
+  method: "time_based"  # time_based, service_based, or both
+  metrics:
+    cpu_mean: "mean"
+    memory_mean: "mean"
+    cpu_std: "mean"
+    memory_std: "mean"
+    total_request_rate_mean: "mean"
+    total_request_rate_std: "mean"
+  
+columns:
+  keep: ["ts", "cpu_mean", "memory_mean", "cpu_std", "memory_std", "total_request_rate_mean", "total_request_rate_std"]

@@ -1,0 +1,2 @@
+ts_iso,forecast_cpu_max,forecast_mem_max,forecast_rr_max,required_units,aws_price_per_vm_usd_h,openstack_price_per_vm_usd_h,aws_total_usd_h,openstack_total_usd_h,chosen_provider,chosen_name,clouda_status,cloudb_status
+2026-04-30T10:35:37,0.784779,0.971500,13340.882000,1,0.021600,0.010000,0.021600,0.010000,A,CloudA-openstack,ACTIVE,SHUTOFF

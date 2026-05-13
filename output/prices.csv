@@ -1,0 +1,3 @@
+provider,region,instance_type,price_per_hour_usd,cpu_capacity_vcpu
+aws,eu-north-1,t3.small,0.0216,2
+openstack,oslo,aem.2c2r.50g,0.0100,2

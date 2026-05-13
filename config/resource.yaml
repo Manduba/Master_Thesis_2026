@@ -1,0 +1,19 @@
+# config/resource.yaml
+resource:
+  input_glob: "data/batch3/MSResource_*.csv"   # process all matching files
+  timestamp_col: "timestamp"
+  msname_col: "msname"
+  msinstance_col: "msinstanceid"
+  cpu_col: "instance_cpu_usage"
+  mem_col: "instance_memory_usage"
+  time_unit: "ms"          # timestamps are in milliseconds
+  interval: "60s"          # resample target grid
+  time_format: "%H:%M:%S"  # show only hh:mm:ss in output
+  clip_01: false            # optional: clip CPU/Memory to [0,1]
+
+  # two-stage aggregation to avoid double-weighting:
+  stage1_agg: "mean"       # within instance per minute (from 30s → 60s)
+  stage2_agg: ["mean, std"]       # across instances per service per minute
+
+  output_csv: "output/batch3_out_resource_service_60s.csv"
+  include_active_instances: true

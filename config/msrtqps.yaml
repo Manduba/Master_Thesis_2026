@@ -1,0 +1,28 @@
+msrtqps:
+  input_glob: "data/batch3/MSRTQps_*.csv"
+  output_csv: "output/batch3_out_msrtqps_service_60s.csv"
+
+  columns:
+    timestamp: "timestamp"
+    msname: "msname"
+    msinstanceid: "msinstanceid"
+    metric: "metric"
+    value: "value"
+
+  time_unit: "ms"
+  bucket: "60s"
+
+  # Keep all metrics, including HTTP/consumerMQ RT for reporting
+  mcr_metrics:
+    - "HTTP_MCR"
+    - "consumerMQ_MCR"
+    - "consumerRPC_MCR"
+    - "providerRPC_MCR"
+
+  rt_metrics:
+    #- "HTTP_RT"
+    #- "consumerMQ_RT"
+    - "consumerRPC_RT"
+    - "providerRPC_RT"
+
+  drop_index_col: "Unnamed: 0"

@@ -1,0 +1,16 @@
+{
+  "raw_csv_path": "output/final_service_timebased.csv",
+  "cols": [
+    "cpu_mean",
+    "memory_mean",
+    "request_rate_mean"
+  ],
+  "context_len": 60,
+  "lags_sequence": [
+    1
+  ],
+  "history_len": 61,
+  "pred_len": 10,
+  "rows": 720,
+  "saved_scaler": "output/hf_run_eval/minmax_scaler.pkl"
+}
