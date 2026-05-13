@@ -49,8 +49,9 @@ The overall MWPA workflow is implemented in the following stages:
 
 1. Preprocess Alibaba cluster trace data to aggregate CPU, memory, and request-rate metrics into a multivariate time-series dataset.
 2. Train and evaluate the forecasting model. Also, save the trained model and scaler for later inference.
-3. Prepare cloud pricing and decision engine input.
-4. Run the decision engine in static or live mode. 
+3. Prepare cloud pricing input.
+4. Prepare decision engine design logic.
+5. Run the decision engine in static or live mode (using yaml file). 
     - It estimates provider cost from forecasted demand. 
     - And it then applies VM-state actuation based on the selected providers. 
     - Finally, it store decision logs and selected experiment outputs.
@@ -81,7 +82,12 @@ This includes:
 - forecast file paths
 - pricing mode and provider pricing values
 
-The implementation assumes that application environments are already prepared on the candidate provider VMs. The framework performs provider selection through VM-state actuation rather than full application deployment.
+The implementation assumes that application environments are already prepared on the candidate provider VMs. The framework performs provider selection through VM-state actuation rather than full application deployment. Therefore,
+
+- a VM needs to be created in cloud platform (openstack) to transfer model
+- another vm as a candidate provider need to be created in openstack
+- a vm needs to be created in aws for another candidate provider
+- mock environment experiment, two vm needs to created in openstack or aws depending on the access to the cloud platform. In that case vms identifiers needs to be updated in the decision engine modules.
 
 ## Recommended Execution Paths
 
@@ -95,9 +101,9 @@ Use this path if the goal is to reproduce the complete MWPA pipeline from datase
 2. Generate the final multivariate time-series dataset used for training.
 3. Run the forecasting model training and evaluation scripts.
 4. Save the trained model artifacts and scaler.
-5. Prepare provider pricing input using the configured pricing mode.
-6. Run the decision engine in static mode for controlled validation.
-7. Run the decision engine in live mode for remote inference and VM-state switching experiments.
+5. Prepare provider pricing input using the configured pricing mode (live/csv/simulation).
+6. Run the decision engine in static mode for controlled validation (use yaml file for mode switching).
+7. Run the decision engine in live mode for remote inference and VM-state switching experiments ((use yaml file for mode switching)).
 8. Review the generated forecast files, decision logs, and cost analysis outputs.
 
 ### B. Reusing only the decision engine experiments for actuation validation for provider selection
