@@ -85,8 +85,8 @@ This includes:
 The implementation assumes that application environments are already prepared on the candidate provider VMs. The framework performs provider selection through VM-state actuation rather than full application deployment. Therefore,
 
 - a VM needs to be created in cloud platform (openstack) to transfer model
-- another vm as a candidate provider need to be created in openstack
-- a vm needs to be created in aws for another candidate provider
+- another vm as a candidate provider need to be created in cloud paltform (openstack)
+- a vm needs to be created in aws for another candidate provider 
 - mock environment experiment, two vm needs to created in openstack or aws depending on the access to the cloud platform. In that case vms identifiers needs to be updated in the decision engine modules.
 
 ## Recommended Execution Paths
@@ -110,9 +110,9 @@ Use this path if the goal is to reproduce the complete MWPA pipeline from datase
 
 Use this path if the trained model, scaler, inference VM, and cloud environments are already prepared.
 
-1. Verify that the trained model artifacts and scaler are already available in the expected location.
-2. Update the configuration files with the correct VM names, instance identifiers, SSH paths, and pricing settings.
-3. Prepare provider pricing input using the configured pricing mode.
+1. Verify that the trained model artifacts and scaler are already available in the expected location (ex. cloud platform: openstack)
+2. Update the configuration files with the correct VM names, instance identifiers, SSH paths.
+3. Prepare provider pricing input using the configured pricing mode. 
 4. Run the decision engine in static mode if controlled forecast input is being tested.
 5. Run the decision engine in live mode if remote inference and VM-state switching are being tested.
 6. Review the generated decision logs and cost-analysis outputs.
