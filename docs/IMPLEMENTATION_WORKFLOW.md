@@ -257,9 +257,11 @@ This stage validates MWPA in cloud environments.
 
 ### 4.2 Controlled workload experiment in OpenStack
 
-**Scripts**
-- `run_experiment_http.sh`
-- `log_openstack_http_metrics.py`
+**Scripts_inside_VM**
+- install inginx in the vm where model is transferred.
+- `run_experiment_http.sh`( Run if for 75 minutes if you are first time user)
+- otherwise download "openstack_metrics_http_75min.csv" from the output folder and transfer it the vm. The shell script will append metrics in this file, then run the inference script.
+- `log_openstack_http_metrics.py` (do not have to run this file. This combined inside the shell script to generate metrics file)
 - `infer_openstack_http_next10min.py`
 
 **Purpose**
@@ -276,14 +278,21 @@ This stage validates MWPA in cloud environments.
 
 ### 4.3 Decision engine execution in OpenStack testbed
 
+--- For exceuting this 3 vms are needed. one where the model is transferred and other for candidate provoder reprenstetives.
+
 **Inside VM**
-- `run_live_demo.sh`
-- `infer_openstack_http_live.py`
-- `log_openstack_http_live_metrics.py`
+- `create two vm in openstack (chosen platform) with configuration  2GB RAM, 2vCPUs and 50GB.
+-  name one Cloud A-Op and another Cloud B-aws
+- deploy an app (ex.sockshop to make the candidate environment ready)
+- `run_live_demo.sh` (run it for  70 minutes if you are first time user. you can keep the model anywhere whether remote vm or local machine)
+- otherwise download "openstack_metrics_http_75min_live.csv" from the output folder and transfer it the vm here model is tranferred. The shell script will append metrics in this file, then run the inference script.
+- `infer_openstack_http_live.py` (transfer it to the vm but do not run)
+- `log_openstack_http_live_metrics.py` (transfer it to the vm but do not run)
 
 **Local/controller side**
 - `decision_enigne_mock.py`
-- `config/decision.yaml`
+- `config/decision.yaml` (changed based on you prefrene for static/live mode, sleep time etc.)
+- for static mode check: download "predictions_http_next10min.csv" from the output folder. and then run the decicion_engine_mock.py
 
 **Purpose**
 - validate the decision engine in an emulated multi-cloud OpenStack setup
@@ -298,14 +307,18 @@ This stage validates MWPA in cloud environments.
 
 ### 4.4 Decision engine execution in real multi-cloud
 
+--- For exceuting this 3 vms are needed. one where the model is transferred and other for candidate provoder reprenstetive.
+
 **Inside VM**
-- `run_live_demo.sh`
-- `infer_openstack_http_live.py`
-- `log_openstack_http_live_metrics.py`
+- create one vm in openstack and another in aws with configuration  2GB RAM, 2vCPUs and 50GB. (you can choose your preferred cloud platform)
+- `run_live_demo.sh` in the vm where the model is tranferred. (you can keep the model anywhere whether remote vm or local machine)
+- otherwise download "openstack_metrics_http_75min_live.csv" from the output folder and transfer it the vm here model is tranferred. The shell script will append metrics in this file, then run the inference script.
+- `infer_openstack_http_live.py` (do not run but should be inside the vm where model is tranferred)
+- `log_openstack_http_live_metrics.py` (do not run but should be inside the vm where model is tranferred)
 
 **Local/controller side**
 - `decision_enigne_main.py`
-- `config/decision.yaml`
+- `config/decision.yaml` (change static/live mode based on you preference)
 
 **Purpose**
 - validate the decision engine in a real multi-cloud setup using OpenStack and AWS
@@ -322,7 +335,7 @@ This stage validates MWPA in cloud environments.
 - `cost_improve_analysis_real_multicloud.py`
 
 **Purpose**
-- Valiadte cost optimization improvement using MWPA
+- Valiadte cost optimization improvement using MWPA using decision log from real multi cloud excecution.
 
 **Main outputs**
 - comparisons of MWPA vs always AWS using
