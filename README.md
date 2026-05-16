@@ -143,3 +143,7 @@ Some outputs are included in selected form for documentation and reproducibility
 ## Important Reproducibility Note
 
 This repository does not provide full plug-and-play reproducibility. Some parts of the experiments depend on external datasets, private credentials, cloud infrastructure, and environment-specific configuration that are not included here. However, the repository contains the main implementation logic and selected outputs needed to understand, reuse, and adapt the MWPA workflow.
+
+## License
+
+This repository is released under the MIT License. See the `LICENSE` file for details.
