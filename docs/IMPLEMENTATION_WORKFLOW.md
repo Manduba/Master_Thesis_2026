@@ -125,6 +125,7 @@ In the script folder, a subfolder contains all the process from data download to
 
 **Script**
 - `scripts/Datasetup/visualization_clean_data.py`
+- `scripts/Datasetup/visualization_clean_data_resourceVSstd.py`
 
 **Purpose**
 - inspect the final time-series dataset visually
