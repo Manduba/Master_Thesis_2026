@@ -1,10 +1,10 @@
-# MWPA Thesis Implementation
+# PACE Thesis Implementation
 
 This repository contains the implementation of my master thesis:
 
-**MWPA: A Modular Framework from ML-Based Multivariate Workload Prediction to Price-Aware Cloud Provider Selection via VM State Actuation in Multi-Cloud**
+**PACE: PACE: A Transformer-Based Modular Framework for Multivariate WorkloadvPrediction and Cost-Efficient CloudvProvider Selection in Multi-CloudvEnvironments**
 
-MWPA is a lightweight modular framework that connects:
+PACE is a lightweight modular framework that connects:
 - ML-based multivariate workload forecasting
 - cloud pricing input
 - a rule-based decision engine
@@ -12,7 +12,7 @@ The framework performs provider switching through VM-state actuation, where the 
 
 ## Repository Scope
 
-This repository includes the main implementation code, configuration files, selected processed outputs, plots, and experiment artifacts used to develop and validate the MWPA framework.
+This repository includes the main implementation code, configuration files, selected processed outputs, plots, and experiment artifacts used to develop and validate the PACE framework.
 
 The repository covers:
 - Alibaba workload data preprocessing and multivariate time-series dataset construction
@@ -21,7 +21,7 @@ The repository covers:
 - decision-engine implementation
 - OpenStack-based cloud experiments
 - selected real multi-cloud experiment outputs
-- cost improvement analysis using MWPA
+- cost improvement analysis using PACE
 
 ## Repository Structure
 
@@ -45,7 +45,7 @@ The repository covers:
 
 ## Main Workflow
 
-The overall MWPA workflow is implemented in the following stages:
+The overall PACE workflow is implemented in the following stages:
 
 1. Preprocess Alibaba cluster trace data to aggregate CPU, memory, and request-rate metrics into a multivariate time-series dataset.
 2. Train and evaluate the forecasting model. Also, save the trained model and scaler for later inference.
@@ -58,7 +58,7 @@ The overall MWPA workflow is implemented in the following stages:
 
 ## How to Reproduce the Experiments
 
-This repository can be used to reproduce major parts of the MWPA workflow, including preprocessing, forecasting, pricing input preparation, and decision-engine validation. Some cloud experiments can also be repeated if the required infrastructure is prepared.
+This repository can be used to reproduce major parts of the PACE workflow, including preprocessing, forecasting, pricing input preparation, and decision-engine validation. Some cloud experiments can also be repeated if the required infrastructure is prepared.
 
 ### Prerequisites
 
@@ -95,7 +95,7 @@ Depending on the purpose, the repository can be used in two different ways.
 
 ### A. Full workflow reproduction
 
-Use this path if the goal is to reproduce the complete MWPA pipeline from dataset preprocessing to cloud-side validation.
+Use this path if the goal is to reproduce the complete PACE pipeline from dataset preprocessing to cloud-side validation.
 
 1. Run the preprocessing scripts in `scripts/Datasetup/` to prepare service-based and time-based datasets from the Alibaba traces.
 2. Generate the final multivariate time-series dataset used for training.
@@ -142,7 +142,7 @@ Some outputs are included in selected form for documentation and reproducibility
 
 ## Important Reproducibility Note
 
-This repository does not provide full plug-and-play reproducibility. Some parts of the experiments depend on external datasets, private credentials, cloud infrastructure, and environment-specific configuration that are not included here. However, the repository contains the main implementation logic and selected outputs needed to understand, reuse, and adapt the MWPA workflow.
+This repository does not provide full plug-and-play reproducibility. Some parts of the experiments depend on external datasets, private credentials, cloud infrastructure, and environment-specific configuration that are not included here. However, the repository contains the main implementation logic and selected outputs needed to understand, reuse, and adapt the PACE workflow.
 
 ## License
 
