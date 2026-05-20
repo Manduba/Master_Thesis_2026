@@ -1,6 +1,6 @@
-# MWPA Implementation Workflow
+# PACE Implementation Workflow
 
-This document provides a script-level overview of the implementation workflow used in the MWPA framework. It complements the main `README.md` by showing how the main modules, configuration files, and experiment stages are connected.
+This document provides a script-level overview of the implementation workflow used in the PACE framework. It complements the main `README.md` by showing how the main modules, configuration files, and experiment stages are connected.
 
 The workflow is divided into four parts:
 
@@ -237,7 +237,7 @@ This stage prepares provider pricing and runs the decision engine.
 
 ## 4. OpenStack and Multi-Cloud Experiments
 
-This stage validates MWPA in cloud environments.
+This stage validates PACE in cloud environments.
 
 ### 4.1 Model transfer to OpenStack VM
 
@@ -335,11 +335,11 @@ This stage validates MWPA in cloud environments.
 - `cost_improve_analysis_real_multicloud.py`
 
 **Purpose**
-- Valiadte cost optimization improvement using MWPA using decision log from real multi cloud excecution.
+- Valiadte cost optimization improvement using PACE using decision log from real multi cloud excecution.
 
 **Main outputs**
-- comparisons of MWPA vs always AWS using
-- comparisons of MWPA vs always Openstack using
+- comparisons of PACE vs always AWS using
+- comparisons of PACE vs always Openstack using
 - Quantitative analysis of the output results
 
 ---
@@ -349,7 +349,7 @@ This stage validates MWPA in cloud environments.
 Depending on the goal, the repository can be used in different ways.
 
 ### 6.1 Full workflow reproduction
-Use this path if the goal is to reproduce the entire MWPA implementation:
+Use this path if the goal is to reproduce the entire PACE implementation:
 1. dataset setup and preprocessing
 2. model training and evaluation
 3. pricing preparation
