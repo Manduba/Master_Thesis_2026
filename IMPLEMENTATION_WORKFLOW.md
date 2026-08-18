@@ -311,7 +311,8 @@ This stage validates PACE in cloud environments.
 
 **Inside VM**
 - create one vm in openstack and another in aws with configuration  2GB RAM, 2vCPUs and 50GB. (you can choose your preferred cloud platform)
-- `run_live_demo.sh` in the vm where the model is tranferred. (you can keep the model anywhere whether remote vm or local machine)
+- chmod +x run_live_demo.sh (make the command executable)
+- `./run_live_demo.sh` in the vm where the model is tranferred. (you can keep the model anywhere whether remote vm or local machine)
 - otherwise download "openstack_metrics_http_75min_live.csv" from the output folder and transfer it the vm here model is tranferred. The shell script will append metrics in this file, then run the inference script.
 - `infer_openstack_http_live.py` (do not run but should be inside the vm where model is tranferred)
 - `log_openstack_http_live_metrics.py` (do not run but should be inside the vm where model is tranferred)
