@@ -288,6 +288,7 @@ This stage validates PACE in cloud environments.
 - otherwise download "openstack_metrics_http_75min_live.csv" from the output folder and transfer it the vm here model is tranferred. The shell script will append metrics in this file, then run the inference script.
 - `infer_openstack_http_live.py` (transfer it to the vm but do not run)
 - `log_openstack_http_live_metrics.py` (transfer it to the vm but do not run)
+- `./stop_live_demo.sh` stop the logger when needed
 
 **Local/controller side**
 - `decision_enigne_mock.py`
